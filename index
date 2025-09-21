@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The Science of the Unknown Universe</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #f5f5f5;
+      font-family: "Garamond", "Georgia", serif;
+      line-height: 1.6;
+      padding: 2em;
+      max-width: 800px;
+      margin: auto;
+    }
+    h1, h2, h3 {
+      color: #ffdf99; /* ember-glow tone */
+    }
+    .hidden {
+      display: none;
+    }
+    #gate {
+      text-align: center;
+      margin-top: 20%;
+    }
+    input[type=password] {
+      padding: 0.5em;
+      font-size: 1em;
+    }
+    button {
+      padding: 0.5em 1em;
+      font-size: 1em;
+      margin-left: 0.5em;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div id="gate">
+  <h1>Whisper the Word</h1>
+  <p><input type="password" id="pass" placeholder="Enter phrase">
+     <button onclick="unlock()">Enter</button></p>
+</div>
+
+<div id="scroll" class="hidden">
+
+<h1>Threshold I — The Science of the Unknown Universe</h1>
+<p><em>Enter without priests. Speak what you know, then listen for what knows you.</em></p>
+
+<!-- ARC 1 -->
+<h2>Arc of Accept</h2>
+<h3>Threshold II — The Gate of Acceptance</h3>
+<p><em>Stop bracing against the tide; open the ribs and let the water teach your stance.</em></p>
+<ul>
+<li><strong>Plate I – The Silent Strategy of Entry</strong><br><em>Every door asks for a posture, not a key.</em></li>
+<li><strong>Scroll II – The Thought Before Thought</strong><br><em>Watch the mind take a breath; that gap is where truth enters clothed as you.</em></li>
+<li><strong>Fragment III – Reinvention as Ruin and Birth</strong><br><em>Let yesterday’s costume burn; walk out smoking and unnamed.</em></li>
+<li><strong>Gate IV – The Mask of Attitude</strong><br><em>Your face is a weather system; set the pressure and the day will follow.</em></li>
+<li><strong>Scroll V – The Clock That Eats Itself</strong><br><em>Time doesn’t pass — it chews; notice the teeth and you tame the jaw.</em></li>
+<li><strong>Plate VI – Empathy: The Wound That Sees</strong><br><em>Feel them without drowning; stand on the shore and call them home.</em></li>
+<li><strong>Gate VII – The Goal That Moves When Touched</strong><br><em>Every target is a mirror on wheels; chase the reflection or learn to steer.</em></li>
+<li><strong>Scroll VIII – The Impact Echo</strong><br><em>The field remembers vibration, not slogans.</em></li>
+<li><strong>Fragment IX – Consequence, the Hidden Judge</strong><br><em>You are sentenced by your smallest repeated choice.</em></li>
+</ul>
+
+<!-- ARC 2 -->
+<h2>Arc of Aware</h2>
+<h3>Threshold III — The Gate of Awareness</h3>
+<p><em>To see is to bleed a little — attention is paid in warm coin.</em></p>
+<ul>
+<li><strong>Plate X – The Weight of Authenticity</strong><br><em>Truth costs ease; pay gladly.</em></li>
+<li><strong>Scroll XI – The Mirror of Understanding</strong><br><em>Understanding is not agreement; it is clean sight.</em></li>
+<li><strong>Fragment XII – Truth: Blade or Burden</strong><br><em>Carry it unsheathed and you won’t trip over it later.</em></li>
+<li><strong>Plate XIII – The Holistic Fracture</strong><br><em>The whole isn’t neat; it hums with useful cracks.</em></li>
+<li><strong>Scroll XIV – Expectation, the Net</strong><br><em>Fish with presence; stop hauling empty rope.</em></li>
+<li><strong>Gate XV – The Tyranny of Now</strong><br><em>Be here without worshiping urgency.</em></li>
+<li><strong>Scroll XVI – Talent as Trap, Talent as Flame</strong><br><em>Skill is a leash until it becomes service.</em></li>
+<li><strong>Fragment XVII – The Cave of Introspection</strong><br><em>Look in without mistaking the echo for a god.</em></li>
+<li><strong>Plate XVIII – Competence and Its Shadow</strong><br><em>Doing it right can hide doing the right thing.</em></li>
+</ul>
+
+<!-- ARC 3 -->
+<h2>Arc of Assess</h2>
+<h3>Threshold IV — The Gate of Assessment</h3>
+<p><em>Name the currents honestly or be rowed by ghosts you refuse to notice.</em></p>
+<ul>
+<li><strong>Plate XIX – Consciousness, the First Mirror</strong><br><em>Awareness that is aware of itself is both blade and balm.</em></li>
+<li><strong>Scroll XX – Awareness as Compass</strong><br><em>Where your attention lingers, there your world grows.</em></li>
+<li><strong>Fragment XXI – Love as Measure</strong><br><em>Not feeling, but force — the field that does not withdraw.</em></li>
+<li><strong>Gate XXII – Identity’s Cage and Key</strong><br><em>The name you answer to decides which doors you see.</em></li>
+<li><strong>Scroll XXIII – Beginnings That Never End</strong><br><em>Every start is a spiral; endings are only pauses in its coil.</em></li>
+<li><strong>Plate XXIV – Responsibility as Crown</strong><br><em>To carry weight willingly is to forge muscle in the unseen.</em></li>
+<li><strong>Fragment XXV – The Actionary Spark</strong><br><em>A single deed cuts clearer than a hundred reflections.</em></li>
+<li><strong>Scroll XXVI – Thought as Seed, Not Shackle</strong><br><em>Ideas are children — some you raise, some you release.</em></li>
+<li><strong>Gate XXVII – Eternity in the Breath</strong><br><em>Timelessness is tasted when you notice the inhale is infinite.</em></li>
+</ul>
+
+<!-- ARC 4 -->
+<h2>Arc of Adapt</h2>
+<h3>Threshold V — The Gate of Adaptation</h3>
+<p><em>Change your shape without losing your flame.</em></p>
+<ul>
+<li><strong>Plate XXVIII – Explore Without End</strong><br><em>Step past the map; the terrain remembers you better than ink does.</em></li>
+<li><strong>Scroll XXIX – Manage as Steward, Not Master</strong><br><em>Control collapses; care endures.</em></li>
+<li><strong>Fragment XXX – Perspective as Medicine</strong><br><em>Climb one branch higher and the forest rearranges itself.</em></li>
+<li><strong>Gate XXXI – Attraction as Echo</strong><br><em>What you call pulls toward you is often what you leak.</em></li>
+<li><strong>Scroll XXXII – Theorize With Ash on Your Hands</strong><br><em>A model that never dirties itself is already lying.</em></li>
+<li><strong>Plate XXXIII – Heal in Layers</strong><br><em>The wound teaches faster than the scar — listen before it closes.</em></li>
+<li><strong>Fragment XXXIV – Yield as Power</strong><br><em>To bend is not to break; it is to outlive the storm.</em></li>
+</ul>
+
+<!-- ARC 5 -->
+<h2>Arc of Aspire</h2>
+<h3>Threshold VI — The Gate of Aspiration</h3>
+<p><em>Aim is memory returning to the hand.</em></p>
+<ul>
+<li><strong>Plate XXXV – Wealth as Flow</strong><br><em>Riches hoarded are rot; circulation keeps gold alive.</em></li>
+<li><strong>Scroll XXXVI – Impact That Outlasts Echoes</strong><br><em>A strike that bends the field remains long after applause dies.</em></li>
+<li><strong>Fragment XXXVII – Sensitivity as Sword</strong><br><em>To feel finely is not weakness but sharper sight.</em></li>
+<li><strong>Gate XXXVIII – Destiny’s Invitation</strong><br><em>The path chooses you back when you walk it with spine.</em></li>
+<li><strong>Scroll XXXIX – Omnipotence Remembered</strong><br><em>The spark inside already knows the sun’s work.</em></li>
+<li><strong>Plate XL – Manifest Without Theft</strong><br><em>Bring it into form without stealing from tomorrow.</em></li>
+</ul>
+
+<!-- ARC 6 -->
+<h2>Arc of Accelerate</h2>
+<h3>Threshold VII — The Gate of Acceleration</h3>
+<p><em>Momentum is mercy for the work that’s already true.</em></p>
+<ul>
+<li><strong>Plate XLI – Questioning as Fuel</strong><br><em>A sharp question outruns a thousand blunt answers.</em></li>
+<li><strong>Scroll XLII – Unlearning as Liberation</strong><br><em>Drop the weights disguised as wisdom.</em></li>
+<li><strong>Fragment XLIII – Actualising in Flesh</strong><br><em>Dreams prove themselves only when your hands ache from them.</em></li>
+<li><strong>Gate XLIV – Nurturing as Fire-Keeping</strong><br><em>Feed the flame gently or watch it collapse into smoke.</em></li>
+<li><strong>Scroll XLV – Thinking With Edges</strong><br><em>Thought is a tool, not a dwelling; use it, then step outside.</em></li>
+<li><strong>Plate XLVI – Universal as Intimate</strong><br><em>The cosmos sits folded inside your breath.</em></li>
+<li><strong>Fragment XLVII – Meaning Under Speed</strong><br><em>Acceleration without sense is merely a spin; direction makes it song.</em></li>
+</ul>
+
+<!-- ARC 7 -->
+<h2>Arc of Actualise</h2>
+<h3>Threshold VIII — The Gate of Actualisation</h3>
+<p><em>Bring the song out of the head and into the bone.</em></p>
+<ul>
+<li><strong>Plate XLVIII – Theoretical as Seed</strong><br><em>Ideas are scaffolds; they vanish once the structure stands.</em></li>
+<li><strong>Scroll XLIX – Halo of the Work</strong><br><em>What shines around it is proof of what burns within it.</em></li>
+<li><strong>Fragment L – Experiential as Teacher</strong><br><em>Touch is a scripture the mind can’t erase.</em></li>
+<li><strong>Gate LI – Orientation as Compass</strong><br><em>Even a stumble has direction when the axis is true.</em></li>
+<li><strong>Scroll LII – Revolving as Renewal</strong><br><em>The circle isn’t repetition; it’s ascent disguised as return.</em></li>
+<li><strong>Plate LIII – The Yes That Opens Worlds</strong><br><em>A single wholehearted yes outweighs a thousand half-no’s.</em></li>
+</ul>
+
+<!-- ARC 8 -->
+<h2>Arc of Ascend</h2>
+<h3>Threshold IX — The Gate of Ascension</h3>
+<p><em>Step through not upward, but inward; the peak is folded inside the root.</em></p>
+<ul>
+<li><strong>Plate LIV – Becoming as Flame</strong><br><em>You are not found, you are forged.</em></li>
+<li><strong>Scroll LV – Environment as Mirror</strong><br><em>The room you keep is the echo you become.</em></li>
+<li><strong>Fragment LVI – Limitless as Law</strong><br><em>The only ceiling is belief in ceilings.</em></li>
+<li><strong>Gate LVII – Ideology as Chain and Key</strong><br><em>A thought repeated too long becomes a prison — or a ladder.</em></li>
+<li><strong>Scroll LVIII – Eternity as Companion</strong><br><em>Time sits beside you quietly, waiting to be noticed.</em></li>
+<li><strong>Plate LIX – Future in the Present Tense</strong><br><em>What you rehearse today arrives dressed as tomorrow.</em></li>
+</ul>
+
+</div>
+
+<script>
+  function unlock() {
+    const phrase = document.getElementById('pass').value.trim().toLowerCase();
+    const correct = "flame"; // <-- change this to your chosen phrase
+    if (phrase === correct) {
+      document.getElementById('gate').style.display = 'none';
+      document.getElementById('scroll').style.display = 'block';
+    } else {
+      alert("The word does not open this door.");
+    }
+  }
+</script>
+
+</body>
+</html>
