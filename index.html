@@ -9,19 +9,34 @@
     --ember:#ffdf99; --text:#f5f5f5; --glow:rgba(255,190,80,.55);
   }
   html,body{height:100%}
-  body{
-  margin:0; color:#f5f5f5;
+/* base: no watermark on the portal */
+body{
+  background:#000;
+  color:#f5f5f5;
   font-family:"Garamond","Georgia",serif; line-height:1.6;
-  background:#000;               /* ← no watermark on the portal */
 }
 
-/* Watermark only when this class is present */
-body.sigil{
+/* watermark layer lives on a pseudo-element */
+body::before{
+  content:"";
+  position:fixed; inset:0; z-index:-1;          /* sits behind everything */
+  pointer-events:none;
+  opacity:0;                                     /* start invisible */
+  transition: opacity 700ms ease;                /* fade duration */
   background:
-    radial-gradient(closest-side at 50% 35%, rgba(255,210,120,.08), transparent 70%),
-    url('prism.png?v=5') no-repeat center 60% fixed,
-    #000;
-  background-size: auto, 520px auto, auto;
+    radial-gradient(closest-side at 50% 35%, rgba(255,210,120,.06), transparent 70%),
+    url('prism.png?v=6') no-repeat center 60%;
+  background-size: auto, 480px auto;             /* adjust size/position to taste */
+}
+
+/* when the portal is passed, fade the watermark in */
+body.sigil::before{
+  opacity:1;
+}
+
+/* respect reduced-motion */
+@media (prefers-reduced-motion: reduce){
+  body::before{ transition:none }
 }
   .wrap{max-width:920px;margin:0 auto;padding:2rem;}
   h1,h2,h3{color:var(--ember);letter-spacing:.5px;margin:.25em 0 .4em}
@@ -292,12 +307,12 @@ body.sigil{
   function enterPortal(){
     document.getElementById('portal').style.display='none';
     document.getElementById('gate').classList.remove('hidden');
-    document.body.classList.add('sigil'); // enable watermark only after portal
+    document.body.classList.add('sigil'); // triggers the fade-in
   }
 
   function unlock(){
     const phrase = document.getElementById('pass').value.trim().toLowerCase();
-    const correct = "flame"; // <-- change to your secret passphrase
+    const correct = "flame"; // change to your secret
     if(phrase === correct){
       document.getElementById('gate').classList.add('hidden');
       document.getElementById('scroll').classList.remove('hidden');
@@ -308,5 +323,3 @@ body.sigil{
     }
   }
 </script>
-</body>
-</html>
