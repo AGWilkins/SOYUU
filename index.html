@@ -6,68 +6,48 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <style>
   :root{
-    --ember:#ffdf99;
-    --ink:#0b0b0b;
-    --smoke:#141414;
-    --text:#f5f5f5;
-    --glow:rgba(255,190,80,.55);
+    --ember:#ffdf99; --text:#f5f5f5; --glow:rgba(255,190,80,.55);
   }
-  /* Page & watermark */
   html,body{height:100%}
   body{
-    margin:0; background:#000 url('prism-watermark.png?v=3') no-repeat center center fixed;
-    background-size: 520px auto; color:var(--text);
-    font-family: "Garamond","Georgia",serif; line-height:1.6;
+    margin:0; color:var(--text);
+    font-family:"Garamond","Georgia",serif; line-height:1.6;
+    /* Single-image watermark with soft radial glow */
+    background:
+      radial-gradient(closest-side at 50% 35%, rgba(255,210,120,.08), transparent 70%),
+      url('prism.png?v=4') no-repeat center center fixed,
+      #000;
+    background-size: auto, 520px auto, auto;
   }
-  .wrap{max-width: 920px; margin:0 auto; padding:2rem;}
-  h1,h2,h3{color:var(--ember); letter-spacing:.5px; margin:.25em 0 .4em}
+  .wrap{max-width:920px;margin:0 auto;padding:2rem;}
+  h1,h2,h3{color:var(--ember);letter-spacing:.5px;margin:.25em 0 .4em}
   p{margin:.5em 0 1em}
   .hidden{display:none}
 
   /* Portal */
-  #portal{
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    height:100vh; text-align:center; background: radial-gradient(closest-side at 50% 35%, rgba(255,210,120,.08), transparent 70%);
-  }
-  #portal img{max-width:300px; width:60vw; height:auto; filter: drop-shadow(0 0 24px rgba(255,210,120,.35));}
-  #portal h1{margin-top:1.5rem; font-weight:600; letter-spacing:1.5px}
-  .btn{
-    margin-top:1.25rem; padding:.7em 1.1em; border:1px solid var(--ember);
-    color:var(--ember); background:transparent; border-radius:12px; cursor:pointer;
-    box-shadow: 0 0 14px var(--glow); transition: transform .08s ease, box-shadow .15s ease;
-  }
-  .btn:hover{transform: translateY(-1px); box-shadow:0 0 18px var(--glow)}
-  .btn:active{transform: translateY(0)}
+  #portal{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;text-align:center}
+  #portal img{max-width:300px;width:60vw;height:auto;filter:drop-shadow(0 0 24px rgba(255,210,120,.35))}
+  .btn{margin-top:1.25rem;padding:.7em 1.1em;border:1px solid var(--ember);color:var(--ember);background:transparent;border-radius:12px;cursor:pointer;box-shadow:0 0 14px var(--glow);transition:transform .08s,box-shadow .15s}
+  .btn:hover{transform:translateY(-1px);box-shadow:0 0 18px var(--glow)}
 
   /* Gate */
-  #gate{ text-align:center; margin-top:18vh }
-  #gate input[type=password]{ padding:.6em .8em; font-size:1rem; border-radius:10px; border:1px solid var(--ember); background:#111; color:var(--text); }
-  #gate button{ margin-left:.5em }
+  #gate{text-align:center;margin-top:18vh}
+  #gate input[type=password]{padding:.6em .8em;font-size:1rem;border-radius:10px;border:1px solid var(--ember);background:#111;color:var(--text)}
+  #gate button{margin-left:.5em}
 
   /* Invocation */
-  .invocation{ color:var(--ember); font-style:italic; text-align:center; margin: .5em 0 1.5em; opacity:.95 }
+  .invocation{color:var(--ember);font-style:italic;text-align:center;margin:.5em 0 1.5em;opacity:.95}
 
-  /* Ember-glow audio skins */
-  .player{
-    background: linear-gradient(180deg, rgba(20,20,20,.92), rgba(10,10,10,.92));
-    border:1px solid var(--ember); border-radius:14px; padding:.75rem .9rem; margin:.35rem 0 1.25rem;
-    box-shadow: 0 0 14px var(--glow);
-  }
-  .player audio{ width:100%; height:34px; display:block; background:transparent; }
-  /* Some browsers expose limited theming; the container carries the look. */
+  /* Ember-glow players */
+  .player{background:linear-gradient(180deg,rgba(20,20,20,.92),rgba(10,10,10,.92));border:1px solid var(--ember);border-radius:14px;padding:.75rem .9rem;margin:.35rem 0 1.25rem;box-shadow:0 0 14px var(--glow)}
+  .player audio{width:100%;height:34px;display:block;background:transparent}
 
-  ul{ list-style:none; padding-left:0; margin: .5rem 0 1.75rem }
-  li{ margin:0 0 1.1rem }
-
-  /* Section separators as faint lines */
-  .divider{ height:1px; background:linear-gradient(90deg, transparent, rgba(255,223,153,.35), transparent); margin:1.75rem 0 }
-
-  /* Reduce watermark visibility on small screens */
-  @media (max-width: 640px){
-    body{ background-size: 70vw auto; }
-  }
+  ul{list-style:none;padding-left:0;margin:.5rem 0 1.75rem}
+  li{margin:0 0 1.1rem}
+  .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,223,153,.35),transparent);margin:1.75rem 0}
+  @media (max-width:640px){ body{ background-size:auto, 70vw auto, auto } }
 </style>
-</head>
+
 <body>
 
 <!-- Landing Portal -->
