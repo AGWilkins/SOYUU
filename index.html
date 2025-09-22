@@ -15,6 +15,11 @@ body{
   color:#f5f5f5;
   font-family:"Garamond","Georgia",serif; line-height:1.6;
 }
+  /* Gate fade-out */
+#gate.fade-out{
+  opacity:0;
+  pointer-events:none;
+}
 /* Portal fade-out */
 #portal{
   opacity:1;
@@ -347,9 +352,8 @@ body.sigil::before{
     // start portal fade-out
     portal.classList.add('fade-out');
 
-    // when the fade finishes, hide portal, show gate, and bring in the watermark
     const onDone = (e) => {
-      if (e && e.propertyName !== 'opacity') return; // only on opacity transition
+      if (e && e.propertyName !== 'opacity') return;
       portal.removeEventListener('transitionend', onDone);
       portal.style.display = 'none';
 
@@ -358,31 +362,44 @@ body.sigil::before{
 
       // reveal the gate with a fade-in
       gate.classList.remove('hidden');
-      // ensure layout has applied before adding .visible
       requestAnimationFrame(() => gate.classList.add('visible'));
     };
 
-    // prefer transitionend, but also fallback in case the event is swallowed
     portal.addEventListener('transitionend', onDone);
-    setTimeout(onDone, 700); // fallback safety
+    setTimeout(onDone, 700);
   }
 
   function unlock(){
     const phrase = document.getElementById('pass').value.trim().toLowerCase();
     const correct = "flame"; // <-- change to your secret passphrase
     if(phrase === correct){
-      // hide the gate, reveal the scroll with a gentle fade
       const gate = document.getElementById('gate');
       const scrollEl = document.getElementById('scroll');
 
-      gate.classList.add('hidden');         // we already faded gate in; now just hide
-      scrollEl.classList.remove('hidden');
-      setTimeout(() => scrollEl.classList.add('visible'), 50);
+      // fade out the gate
+      gate.classList.add('fade-out');
 
-      const firstAudio = document.querySelector('#scroll audio');
-      if(firstAudio) firstAudio.focus();
+      const onGateGone = (e) => {
+        if (e && e.propertyName !== 'opacity') return;
+        gate.removeEventListener('transitionend', onGateGone);
+
+        // fully hide gate once fade-out is done
+        gate.classList.add('hidden');
+
+        // reveal scroll with a fade-in
+        scrollEl.classList.remove('hidden');
+        requestAnimationFrame(() => scrollEl.classList.add('visible'));
+
+        const firstAudio = document.querySelector('#scroll audio');
+        if(firstAudio) firstAudio.focus();
+      };
+
+      gate.addEventListener('transitionend', onGateGone);
+      setTimeout(onGateGone, 800);
     } else {
       alert("The word does not open this door.");
     }
   }
 </script>
+</body>
+</html>
