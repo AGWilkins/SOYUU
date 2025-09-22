@@ -1,469 +1,319 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>The Science of the Unknown Universe</title>
-  <style>
-    body { background:#000; color:#f5f5f5; font-family:"Garamond","Georgia",serif; line-height:1.6; padding:2em; max-width:900px; margin:auto; }
-    h1,h2,h3 { color:#ffdf99; }
-    .hidden{ display:none; }
-    #gate{ text-align:center; margin-top:20vh; }
-    input[type=password]{ padding:0.6em; font-size:1em; }
-    button{ padding:0.6em 1em; font-size:1em; margin-left:0.5em; cursor:pointer; }
-    audio{ width:100%; margin:0.25em 0 1.25em; }
-    ul{ list-style: none; padding-left:0; }
-    li{ margin:0 0 1.25em; }
-  </style>
+<meta charset="UTF-8" />
+<title>The Science of the Unknown Universe</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<style>
+  :root{
+    --ember:#ffdf99;
+    --ink:#0b0b0b;
+    --smoke:#141414;
+    --text:#f5f5f5;
+    --glow:rgba(255,190,80,.55);
+  }
+  /* Page & watermark */
+  html,body{height:100%}
+  body{
+    margin:0; background:#000 url('prism-watermark.png?v=3') no-repeat center center fixed;
+    background-size: 520px auto; color:var(--text);
+    font-family: "Garamond","Georgia",serif; line-height:1.6;
+  }
+  .wrap{max-width: 920px; margin:0 auto; padding:2rem;}
+  h1,h2,h3{color:var(--ember); letter-spacing:.5px; margin:.25em 0 .4em}
+  p{margin:.5em 0 1em}
+  .hidden{display:none}
+
+  /* Portal */
+  #portal{
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    height:100vh; text-align:center; background: radial-gradient(closest-side at 50% 35%, rgba(255,210,120,.08), transparent 70%);
+  }
+  #portal img{max-width:300px; width:60vw; height:auto; filter: drop-shadow(0 0 24px rgba(255,210,120,.35));}
+  #portal h1{margin-top:1.5rem; font-weight:600; letter-spacing:1.5px}
+  .btn{
+    margin-top:1.25rem; padding:.7em 1.1em; border:1px solid var(--ember);
+    color:var(--ember); background:transparent; border-radius:12px; cursor:pointer;
+    box-shadow: 0 0 14px var(--glow); transition: transform .08s ease, box-shadow .15s ease;
+  }
+  .btn:hover{transform: translateY(-1px); box-shadow:0 0 18px var(--glow)}
+  .btn:active{transform: translateY(0)}
+
+  /* Gate */
+  #gate{ text-align:center; margin-top:18vh }
+  #gate input[type=password]{ padding:.6em .8em; font-size:1rem; border-radius:10px; border:1px solid var(--ember); background:#111; color:var(--text); }
+  #gate button{ margin-left:.5em }
+
+  /* Invocation */
+  .invocation{ color:var(--ember); font-style:italic; text-align:center; margin: .5em 0 1.5em; opacity:.95 }
+
+  /* Ember-glow audio skins */
+  .player{
+    background: linear-gradient(180deg, rgba(20,20,20,.92), rgba(10,10,10,.92));
+    border:1px solid var(--ember); border-radius:14px; padding:.75rem .9rem; margin:.35rem 0 1.25rem;
+    box-shadow: 0 0 14px var(--glow);
+  }
+  .player audio{ width:100%; height:34px; display:block; background:transparent; }
+  /* Some browsers expose limited theming; the container carries the look. */
+
+  ul{ list-style:none; padding-left:0; margin: .5rem 0 1.75rem }
+  li{ margin:0 0 1.1rem }
+
+  /* Section separators as faint lines */
+  .divider{ height:1px; background:linear-gradient(90deg, transparent, rgba(255,223,153,.35), transparent); margin:1.75rem 0 }
+
+  /* Reduce watermark visibility on small screens */
+  @media (max-width: 640px){
+    body{ background-size: 70vw auto; }
+  }
+</style>
 </head>
 <body>
 
-<div id="gate">
-  <h1>Whisper the Word</h1>
-  <p><input type="password" id="pass" placeholder="Enter phrase">
-     <button onclick="unlock()">Enter</button></p>
+<!-- Landing Portal -->
+<div id="portal">
+  <img src="prism.png?v=3" alt="Prism Portal" />
+  <h1>THE UNKNOWN UNIVERSE</h1>
+  <button class="btn" onclick="enterPortal()">Enter</button>
 </div>
 
-<div id="scroll" class="hidden">
-<h1>Threshold I — The Science of the Unknown Universe</h1>
-<p><em>Enter without priests. Speak what you know, then listen for what knows you.</em></p>
-<audio controls>
-  <source src="audio/60 Introduction to SOYUU.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-<h2>Arc of Accept</h2>
-<h3>Threshold II — The Gate of Acceptance</h3>
-<p><em>Stop bracing against the tide; open the ribs and let the water teach your stance.</em></p>
-<audio controls>
-  <source src="audio/61 Introduction to Accept.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-<ul>
-<li><strong>Plate I – The Silent Strategy of Entry</strong><br><em>Every door asks for a posture, not a key.</em><br>
-<audio controls>
-  <source src="audio/1 Accept 1 Strategy.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Scroll II – The Thought Before Thought</strong><br><em>Watch the mind take a breath; that gap is where truth enters clothed as you.</em><br>
-<audio controls>
-  <source src="audio/2 Accept 2 Thought.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Fragment III – Reinvention as Ruin and Birth</strong><br><em>Let yesterday’s costume burn; walk out smoking and unnamed.</em><br>
-<audio controls>
-  <source src="audio/3 Accept 3 Reinvent.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Gate IV – The Mask of Attitude</strong><br><em>Your face is a weather system; set the pressure and the day will follow.</em><br>
-<audio controls>
-  <source src="audio/4 Accept 4 Attitude.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Scroll V – The Clock That Eats Itself</strong><br><em>Time doesn’t pass — it chews; notice the teeth and you tame the jaw.</em><br>
-<audio controls>
-  <source src="audio/5 Accept 5 Time.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Plate VI – Empathy: The Wound That Sees</strong><br><em>Feel them without drowning; stand on the shore and call them home.</em><br>
-<audio controls>
-  <source src="audio/6 Accept 6 Empathy.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Gate VII – The Goal That Moves When Touched</strong><br><em>Every target is a mirror on wheels; chase the reflection or learn to steer.</em><br>
-<audio controls>
-  <source src="audio/7 Accept 7 Goal.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Scroll VIII – The Impact Echo</strong><br><em>The field remembers vibration, not slogans.</em><br>
-<audio controls>
-  <source src="audio/8 Accept 8 Impact.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Fragment IX – Consequence, the Hidden Judge</strong><br><em>You are sentenced by your smallest repeated choice.</em><br>
-<audio controls>
-  <source src="audio/9 Accept 9 Consequence.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-</ul>
-<h2>Arc of Aware</h2>
-<h3>Threshold III — The Gate of Awareness</h3>
-<p><em>To see is to bleed a little — attention is paid in warm coin.</em></p>
-<audio controls>
-  <source src="audio/62 Introduction to Aware.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-<ul>
-<li><strong>Plate X – The Weight of Authenticity</strong><br><em>Truth costs ease; pay gladly.</em><br>
-<audio controls>
-  <source src="audio/10 Aware 1 Authenticity.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Scroll XI – The Mirror of Understanding</strong><br><em>Understanding is not agreement; it is clean sight.</em><br>
-<audio controls>
-  <source src="audio/11 Aware 2 Understanding.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Fragment XII – Truth: Blade or Burden</strong><br><em>Carry it unsheathed and you won’t trip over it later.</em><br>
-<audio controls>
-  <source src="audio/12 Aware 3 Truth.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Plate XIII – The Holistic Fracture</strong><br><em>The whole isn’t neat; it hums with useful cracks.</em><br>
-<audio controls>
-  <source src="audio/13 Aware 4 Holistic.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Scroll XIV – Expectation, the Net</strong><br><em>Fish with presence; stop hauling empty rope.</em><br>
-<audio controls>
-  <source src="audio/14 Aware 5 Expectation.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Gate XV – The Tyranny of Now</strong><br><em>Be here without worshiping urgency.</em><br>
-<audio controls>
-  <source src="audio/15 Aware 6 Now.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Scroll XVI – Talent as Trap, Talent as Flame</strong><br><em>Skill is a leash until it becomes service.</em><br>
-<audio controls>
-  <source src="audio/16 Aware 7 Talent.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Fragment XVII – The Cave of Introspection</strong><br><em>Look in without mistaking the echo for a god.</em><br>
-<audio controls>
-  <source src="audio/17 Aware 8 Introspection.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Plate XVIII – Competence and Its Shadow</strong><br><em>Doing it right can hide doing the right thing.</em><br>
-<audio controls>
-  <source src="audio/18 Aware 9 Competence.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-</ul>
-<h2>Arc of Assess</h2>
-<h3>Threshold IV — The Gate of Assessment</h3>
-<p><em>Name the currents honestly or be rowed by ghosts you refuse to notice.</em></p>
-<audio controls>
-  <source src="audio/63 Introduction to Assess.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-<ul>
-<li><strong>Plate XIX – Consciousness, the First Mirror</strong><br><em>Awareness that is aware of itself is both blade and balm.</em><br>
-<audio controls>
-  <source src="audio/19 Assess 1 Consciousness.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Scroll XX – Awareness as Compass</strong><br><em>Where your attention lingers, there your world grows.</em><br>
-<audio controls>
-  <source src="audio/20 Assess 2 Awareness.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Fragment XXI – Love as Measure</strong><br><em>Not feeling, but force — the field that does not withdraw.</em><br>
-<audio controls>
-  <source src="audio/21 Assess 3 Love.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Gate XXII – Identity’s Cage and Key</strong><br><em>The name you answer to decides which doors you see.</em><br>
-<audio controls>
-  <source src="audio/22 Assess 4 Identity.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Scroll XXIII – Beginnings That Never End</strong><br><em>Every start is a spiral; endings are only pauses in its coil.</em><br>
-<audio controls>
-  <source src="audio/23 Assess 5 Beginnings.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Plate XXIV – Responsibility as Crown</strong><br><em>To carry weight willingly is to forge muscle in the unseen.</em><br>
-<audio controls>
-  <source src="audio/24 Assess 6 Responsibility.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Fragment XXV – The Actionary Spark</strong><br><em>A single deed cuts clearer than a hundred reflections.</em><br>
-<audio controls>
-  <source src="audio/25 Assess 7 Actionary.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Scroll XXVI – Thought as Seed, Not Shackle</strong><br><em>Ideas are children — some you raise, some you release.</em><br>
-<audio controls>
-  <source src="audio/26 Assess 8 Thought.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Gate XXVII – Eternity in the Breath</strong><br><em>Timelessness is tasted when you notice the inhale is infinite.</em><br>
-<audio controls>
-  <source src="audio/27 Assess 9 Eternity.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-</ul>
-<h2>Arc of Adapt</h2>
-<h3>Threshold V — The Gate of Adaptation</h3>
-<p><em>Change your shape without losing your flame.</em></p>
-<audio controls>
-  <source src="audio/64 Introduction to Adapt.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-<ul>
-<li><strong>Plate XXVIII – Explore Without End</strong><br><em>Step past the map; the terrain remembers you better than ink does.</em><br>
-<audio controls>
-  <source src="audio/28 Adapt 1 Explore.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Scroll XXIX – Manage as Steward, Not Master</strong><br><em>Control collapses; care endures.</em><br>
-<audio controls>
-  <source src="audio/29 Adapt 2 Manage.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Fragment XXX – Perspective as Medicine</strong><br><em>Climb one branch higher and the forest rearranges itself.</em><br>
-<audio controls>
-  <source src="audio/30 Adapt 3 Perspective.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Gate XXXI – Attraction as Echo</strong><br><em>What you call pulls toward you is often what you leak.</em><br>
-<audio controls>
-  <source src="audio/31 Adapt 4 Attract.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Scroll XXXII – Theorize With Ash on Your Hands</strong><br><em>A model that never dirties itself is already lying.</em><br>
-<audio controls>
-  <source src="audio/32 Adapt 5 Theorise.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Plate XXXIII – Heal in Layers</strong><br><em>The wound teaches faster than the scar — listen before it closes.</em><br>
-<audio controls>
-  <source src="audio/33 Adapt 6 Heal.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Fragment XXXIV – Yield as Power</strong><br><em>To bend is not to break; it is to outlive the storm.</em><br>
-<audio controls>
-  <source src="audio/34 Adapt 7 Yield.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-</ul>
-<h2>Arc of Aspire</h2>
-<h3>Threshold VI — The Gate of Aspiration</h3>
-<p><em>Aim is memory returning to the hand.</em></p>
-<audio controls>
-  <source src="audio/65 Introduction to Aspire.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-<ul>
-<li><strong>Plate XXXV – Wealth as Flow</strong><br><em>Riches hoarded are rot; circulation keeps gold alive.</em><br>
-<audio controls>
-  <source src="audio/35 Aspire 1 Wealth.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Scroll XXXVI – Impact That Outlasts Echoes</strong><br><em>A strike that bends the field remains long after applause dies.</em><br>
-<audio controls>
-  <source src="audio/36 Aspire 2 Impact.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Fragment XXXVII – Sensitivity as Sword</strong><br><em>To feel finely is not weakness but sharper sight.</em><br>
-<audio controls>
-  <source src="audio/37 Aspire 3 Sensitivity.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Gate XXXVIII – Destiny’s Invitation</strong><br><em>The path chooses you back when you walk it with spine.</em><br>
-<audio controls>
-  <source src="audio/38 Aspire 4 Destiny.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Scroll XXXIX – Omnipotence Remembered</strong><br><em>The spark inside already knows the sun’s work.</em><br>
-<audio controls>
-  <source src="audio/39 Aspire 5 Omnipotence.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Plate XL – Manifest Without Theft</strong><br><em>Bring it into form without stealing from tomorrow.</em><br>
-<audio controls>
-  <source src="audio/40 Aspire 6 Manifest.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-</ul>
-<h2>Arc of Accelerate</h2>
-<h3>Threshold VII — The Gate of Acceleration</h3>
-<p><em>Momentum is mercy for the work that’s already true.</em></p>
-<audio controls>
-  <source src="audio/66 Introduction to Accelerate.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-<ul>
-<li><strong>Plate XLI – Questioning as Fuel</strong><br><em>A sharp question outruns a thousand blunt answers.</em><br>
-<audio controls>
-  <source src="audio/41 Accelerate 1 Questioning.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Scroll XLII – Unlearning as Liberation</strong><br><em>Drop the weights disguised as wisdom.</em><br>
-<audio controls>
-  <source src="audio/42 Accelerate 2 Unlearning.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Fragment XLIII – Actualising in Flesh</strong><br><em>Dreams prove themselves only when your hands ache from them.</em><br>
-<audio controls>
-  <source src="audio/43 Acceleration 3 Actualising.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Gate XLIV – Nurturing as Fire-Keeping</strong><br><em>Feed the flame gently or watch it collapse into smoke.</em><br>
-<audio controls>
-  <source src="audio/44 Acceleration 4 Nurturing.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Scroll XLV – Thinking With Edges</strong><br><em>Thought is a tool, not a dwelling; use it, then step outside.</em><br>
-<audio controls>
-  <source src="audio/45 Accelerate 5 Thinking.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Plate XLVI – Universal as Intimate</strong><br><em>The cosmos sits folded inside your breath.</em><br>
-<audio controls>
-  <source src="audio/46 Accelerate 6 Universal.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Fragment XLVII – Meaning Under Speed</strong><br><em>Acceleration without sense is merely a spin; direction makes it song.</em><br>
-<audio controls>
-  <source src="audio/47 Accelerate 7 Meaning.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-</ul>
-<h2>Arc of Actualise</h2>
-<h3>Threshold VIII — The Gate of Actualisation</h3>
-<p><em>Bring the song out of the head and into the bone.</em></p>
-<audio controls>
-  <source src="audio/67 Introduction to Actualise.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-<ul>
-<li><strong>Plate XLVIII – Theoretical as Seed</strong><br><em>Ideas are scaffolds; they vanish once the structure stands.</em><br>
-<audio controls>
-  <source src="audio/48 Actualise 1 Theoretical.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Scroll XLIX – Halo of the Work</strong><br><em>What shines around it is proof of what burns within it.</em><br>
-<audio controls>
-  <source src="audio/49 Actualise 2 Halo.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Fragment L – Experiential as Teacher</strong><br><em>Touch is a scripture the mind can’t erase.</em><br>
-<audio controls>
-  <source src="audio/50 Actualise 3 Experiential.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Gate LI – Orientation as Compass</strong><br><em>Even a stumble has direction when the axis is true.</em><br>
-<audio controls>
-  <source src="audio/51 Actualise 4 Orientation.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Scroll LII – Revolving as Renewal</strong><br><em>The circle isn’t repetition; it’s ascent disguised as return.</em><br>
-<audio controls>
-  <source src="audio/52 Actualise 5 Revolving.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Plate LIII – The Yes That Opens Worlds</strong><br><em>A single wholehearted yes outweighs a thousand half-no’s.</em><br>
-<audio controls>
-  <source src="audio/53 Actualise 6 Yes.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-</ul>
-<h2>Arc of Ascend</h2>
-<h3>Threshold IX — The Gate of Ascension</h3>
-<p><em>Step through not upward, but inward; the peak is folded inside the root.</em></p>
-<audio controls>
-  <source src="audio/68 Introduction to Ascend.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-<ul>
-<li><strong>Plate LIV – Becoming as Flame</strong><br><em>You are not found, you are forged.</em><br>
-<audio controls>
-  <source src="audio/54 Ascend 1 Becoming.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Scroll LV – Environment as Mirror</strong><br><em>The room you keep is the echo you become.</em><br>
-<audio controls>
-  <source src="audio/55 Ascend 2 Environment.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Fragment LVI – Limitless as Law</strong><br><em>The only ceiling is belief in ceilings.</em><br>
-<audio controls>
-  <source src="audio/56 Ascend 3 Limitless.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Gate LVII – Ideology as Chain and Key</strong><br><em>A thought repeated too long becomes a prison — or a ladder.</em><br>
-<audio controls>
-  <source src="audio/57 Ascend 4 Ideology.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Scroll LVIII – Eternity as Companion</strong><br><em>Time sits beside you quietly, waiting to be noticed.</em><br>
-<audio controls>
-  <source src="audio/58 Ascend 5 Eternity.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-<li><strong>Plate LIX – Future in the Present Tense</strong><br><em>What you rehearse today arrives dressed as tomorrow.</em><br>
-<audio controls>
-  <source src="audio/59 Ascend 6 Future.m4a" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
-</li>
-</ul>
-</div>
+<div class="wrap">
+  <!-- Gate -->
+  <div id="gate" class="hidden">
+    <h1>Whisper the Word</h1>
+    <p>
+      <input type="password" id="pass" placeholder="Enter phrase" />
+      <button class="btn" onclick="unlock()">Enter</button>
+    </p>
+  </div>
+
+  <!-- Scroll -->
+  <div id="scroll" class="hidden">
+
+    <!-- Invocation to your children -->
+    <p class="invocation">
+      To my children: if you walk here when I am gone, know this—<br/>
+      the fire is yours, the breath remembers you, and you are never alone.
+    </p>
+
+    <h1>Threshold I — The Science of the Unknown Universe</h1>
+    <p><em>Enter without priests. Speak what you know, then listen for what knows you.</em></p>
+    <div class="player"><audio controls>
+      <source src="audio/60 Introduction to SOYUU.m4a?v=3" type="audio/mp4" />
+    </audio></div>
+
+    <div class="divider"></div>
+
+    <!-- ARC 1 -->
+    <h2>Arc of Accept</h2>
+    <h3>Threshold II — The Gate of Acceptance</h3>
+    <p><em>Stop bracing against the tide; open the ribs and let the water teach your stance.</em></p>
+    <div class="player"><audio controls><source src="audio/61 Introduction to Accept.m4a?v=3" type="audio/mp4" /></audio></div>
+    <ul>
+      <li><strong>Plate I – The Silent Strategy of Entry</strong><br/><em>Every door asks for a posture, not a key.</em>
+        <div class="player"><audio controls><source src="audio/1 Accept 1 Strategy.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Scroll II – The Thought Before Thought</strong><br/><em>Watch the mind take a breath; that gap is where truth enters clothed as you.</em>
+        <div class="player"><audio controls><source src="audio/2 Accept 2 Thought.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Fragment III – Reinvention as Ruin and Birth</strong><br/><em>Let yesterday’s costume burn; walk out smoking and unnamed.</em>
+        <div class="player"><audio controls><source src="audio/3 Accept 3 Reinvent.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Gate IV – The Mask of Attitude</strong><br/><em>Your face is a weather system; set the pressure and the day will follow.</em>
+        <div class="player"><audio controls><source src="audio/4 Accept 4 Attitude.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Scroll V – The Clock That Eats Itself</strong><br/><em>Time doesn’t pass — it chews; notice the teeth and you tame the jaw.</em>
+        <div class="player"><audio controls><source src="audio/5 Accept 5 Time.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Plate VI – Empathy: The Wound That Sees</strong><br/><em>Feel them without drowning; stand on the shore and call them home.</em>
+        <div class="player"><audio controls><source src="audio/6 Accept 6 Empathy.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Gate VII – The Goal That Moves When Touched</strong><br/><em>Every target is a mirror on wheels; chase the reflection or learn to steer.</em>
+        <div class="player"><audio controls><source src="audio/7 Accept 7 Goal.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Scroll VIII – The Impact Echo</strong><br/><em>The field remembers vibration, not slogans.</em>
+        <div class="player"><audio controls><source src="audio/8 Accept 8 Impact.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Fragment IX – Consequence, the Hidden Judge</strong><br/><em>You are sentenced by your smallest repeated choice.</em>
+        <div class="player"><audio controls><source src="audio/9 Accept 9 Consequence.m4a?v=3" type="audio/mp4" /></audio></div></li>
+    </ul>
+
+    <div class="divider"></div>
+
+    <!-- ARC 2 -->
+    <h2>Arc of Aware</h2>
+    <h3>Threshold III — The Gate of Awareness</h3>
+    <p><em>To see is to bleed a little — attention is paid in warm coin.</em></p>
+    <div class="player"><audio controls><source src="audio/62 Introduction to Aware.m4a?v=3" type="audio/mp4" /></audio></div>
+    <ul>
+      <li><strong>Plate X – The Weight of Authenticity</strong><br/><em>Truth costs ease; pay gladly.</em>
+        <div class="player"><audio controls><source src="audio/10 Aware 1 Authenticity.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Scroll XI – The Mirror of Understanding</strong><br/><em>Understanding is not agreement; it is clean sight.</em>
+        <div class="player"><audio controls><source src="audio/11 Aware 2 Understanding.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Fragment XII – Truth: Blade or Burden</strong><br/><em>Carry it unsheathed and you won’t trip over it later.</em>
+        <div class="player"><audio controls><source src="audio/12 Aware 3 Truth.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Plate XIII – The Holistic Fracture</strong><br/><em>The whole isn’t neat; it hums with useful cracks.</em>
+        <div class="player"><audio controls><source src="audio/13 Aware 4 Holistic.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Scroll XIV – Expectation, the Net</strong><br/><em>Fish with presence; stop hauling empty rope.</em>
+        <div class="player"><audio controls><source src="audio/14 Aware 5 Expectation.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Gate XV – The Tyranny of Now</strong><br/><em>Be here without worshiping urgency.</em>
+        <div class="player"><audio controls><source src="audio/15 Aware 6 Now.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Scroll XVI – Talent as Trap, Talent as Flame</strong><br/><em>Skill is a leash until it becomes service.</em>
+        <div class="player"><audio controls><source src="audio/16 Aware 7 Talent.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Fragment XVII – The Cave of Introspection</strong><br/><em>Look in without mistaking the echo for a god.</em>
+        <div class="player"><audio controls><source src="audio/17 Aware 8 Introspection.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Plate XVIII – Competence and Its Shadow</strong><br/><em>Doing it right can hide doing the right thing.</em>
+        <div class="player"><audio controls><source src="audio/18 Aware 9 Competence.m4a?v=3" type="audio/mp4" /></audio></div></li>
+    </ul>
+
+    <div class="divider"></div>
+
+    <!-- ARC 3 -->
+    <h2>Arc of Assess</h2>
+    <h3>Threshold IV — The Gate of Assessment</h3>
+    <p><em>Name the currents honestly or be rowed by ghosts you refuse to notice.</em></p>
+    <div class="player"><audio controls><source src="audio/63 Introduction to Assess.m4a?v=3" type="audio/mp4" /></audio></div>
+    <ul>
+      <li><strong>Plate XIX – Consciousness, the First Mirror</strong><br/><em>Awareness that is aware of itself is both blade and balm.</em>
+        <div class="player"><audio controls><source src="audio/19 Assess 1 Consciousness.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Scroll XX – Awareness as Compass</strong><br/><em>Where your attention lingers, there your world grows.</em>
+        <div class="player"><audio controls><source src="audio/20 Assess 2 Awareness.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Fragment XXI – Love as Measure</strong><br/><em>Not feeling, but force — the field that does not withdraw.</em>
+        <div class="player"><audio controls><source src="audio/21 Assess 3 Love.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Gate XXII – Identity’s Cage and Key</strong><br/><em>The name you answer to decides which doors you see.</em>
+        <div class="player"><audio controls><source src="audio/22 Assess 4 Identity.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Scroll XXIII – Beginnings That Never End</strong><br/><em>Every start is a spiral; endings are only pauses in its coil.</em>
+        <div class="player"><audio controls><source src="audio/23 Assess 5 Beginnings.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Plate XXIV – Responsibility as Crown</strong><br/><em>To carry weight willingly is to forge muscle in the unseen.</em>
+        <div class="player"><audio controls><source src="audio/24 Assess 6 Responsibility.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Fragment XXV – The Actionary Spark</strong><br/><em>A single deed cuts clearer than a hundred reflections.</em>
+        <div class="player"><audio controls><source src="audio/25 Assess 7 Actionary.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Scroll XXVI – Thought as Seed, Not Shackle</strong><br/><em>Ideas are children — some you raise, some you release.</em>
+        <div class="player"><audio controls><source src="audio/26 Assess 8 Thought.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Gate XXVII – Eternity in the Breath</strong><br/><em>Timelessness is tasted when you notice the inhale is infinite.</em>
+        <div class="player"><audio controls><source src="audio/27 Assess 9 Eternity.m4a?v=3" type="audio/mp4" /></audio></div></li>
+    </ul>
+
+    <div class="divider"></div>
+
+    <!-- ARC 4 -->
+    <h2>Arc of Adapt</h2>
+    <h3>Threshold V — The Gate of Adaptation</h3>
+    <p><em>Change your shape without losing your flame.</em></p>
+    <div class="player"><audio controls><source src="audio/64 Introduction to Adapt.m4a?v=3" type="audio/mp4" /></audio></div>
+    <ul>
+      <li><strong>Plate XXVIII – Explore Without End</strong><br/><em>Step past the map; the terrain remembers you better than ink does.</em>
+        <div class="player"><audio controls><source src="audio/28 Adapt 1 Explore.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Scroll XXIX – Manage as Steward, Not Master</strong><br/><em>Control collapses; care endures.</em>
+        <div class="player"><audio controls><source src="audio/29 Adapt 2 Manage.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Fragment XXX – Perspective as Medicine</strong><br/><em>Climb one branch higher and the forest rearranges itself.</em>
+        <div class="player"><audio controls><source src="audio/30 Adapt 3 Perspective.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Gate XXXI – Attraction as Echo</strong><br/><em>What you call pulls toward you is often what you leak.</em>
+        <div class="player"><audio controls><source src="audio/31 Adapt 4 Attract.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Scroll XXXII – Theorize With Ash on Your Hands</strong><br/><em>A model that never dirties itself is already lying.</em>
+        <div class="player"><audio controls><source src="audio/32 Adapt 5 Theorise.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Plate XXXIII – Heal in Layers</strong><br/><em>The wound teaches faster than the scar — listen before it closes.</em>
+        <div class="player"><audio controls><source src="audio/33 Adapt 6 Heal.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Fragment XXXIV – Yield as Power</strong><br/><em>To bend is not to break; it is to outlive the storm.</em>
+        <div class="player"><audio controls><source src="audio/34 Adapt 7 Yield.m4a?v=3" type="audio/mp4" /></audio></div></li>
+    </ul>
+
+    <div class="divider"></div>
+
+    <!-- ARC 5 -->
+    <h2>Arc of Aspire</h2>
+    <h3>Threshold VI — The Gate of Aspiration</h3>
+    <p><em>Aim is memory returning to the hand.</em></p>
+    <div class="player"><audio controls><source src="audio/65 Introduction to Aspire.m4a?v=3" type="audio/mp4" /></audio></div>
+    <ul>
+      <li><strong>Plate XXXV – Wealth as Flow</strong><br/><em>Riches hoarded are rot; circulation keeps gold alive.</em>
+        <div class="player"><audio controls><source src="audio/35 Aspire 1 Wealth.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Scroll XXXVI – Impact That Outlasts Echoes</strong><br/><em>A strike that bends the field remains long after applause dies.</em>
+        <div class="player"><audio controls><source src="audio/36 Aspire 2 Impact.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Fragment XXXVII – Sensitivity as Sword</strong><br/><em>To feel finely is not weakness but sharper sight.</em>
+        <div class="player"><audio controls><source src="audio/37 Aspire 3 Sensitivity.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Gate XXXVIII – Destiny’s Invitation</strong><br/><em>The path chooses you back when you walk it with spine.</em>
+        <div class="player"><audio controls><source src="audio/38 Aspire 4 Destiny.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Scroll XXXIX – Omnipotence Remembered</strong><br/><em>The spark inside already knows the sun’s work.</em>
+        <div class="player"><audio controls><source src="audio/39 Aspire 5 Omnipotence.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Plate XL – Manifest Without Theft</strong><br/><em>Bring it into form without stealing from tomorrow.</em>
+        <div class="player"><audio controls><source src="audio/40 Aspire 6 Manifest.m4a?v=3" type="audio/mp4" /></audio></div></li>
+    </ul>
+
+    <div class="divider"></div>
+
+    <!-- ARC 6 -->
+    <h2>Arc of Accelerate</h2>
+    <h3>Threshold VII — The Gate of Acceleration</h3>
+    <p><em>Momentum is mercy for the work that’s already true.</em></p>
+    <div class="player"><audio controls><source src="audio/66 Introduction to Accelerate.m4a?v=3" type="audio/mp4" /></audio></div>
+    <ul>
+      <li><strong>Plate XLI – Questioning as Fuel</strong><br/><em>A sharp question outruns a thousand blunt answers.</em>
+        <div class="player"><audio controls><source src="audio/41 Accelerate 1 Questioning.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Scroll XLII – Unlearning as Liberation</strong><br/><em>Drop the weights disguised as wisdom.</em>
+        <div class="player"><audio controls><source src="audio/42 Accelerate 2 Unlearning.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Fragment XLIII – Actualising in Flesh</strong><br/><em>Dreams prove themselves only when your hands ache from them.</em>
+        <div class="player"><audio controls><source src="audio/43 Acceleration 3 Actualising.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Gate XLIV – Nurturing as Fire-Keeping</strong><br/><em>Feed the flame gently or watch it collapse into smoke.</em>
+        <div class="player"><audio controls><source src="audio/44 Acceleration 4 Nurturing.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Scroll XLV – Thinking With Edges</strong><br/><em>Thought is a tool, not a dwelling; use it, then step outside.</em>
+        <div class="player"><audio controls><source src="audio/45 Accelerate 5 Thinking.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Plate XLVI – Universal as Intimate</strong><br/><em>The cosmos sits folded inside your breath.</em>
+        <div class="player"><audio controls><source src="audio/46 Accelerate 6 Universal.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Fragment XLVII – Meaning Under Speed</strong><br/><em>Acceleration without sense is merely a spin; direction makes it song.</em>
+        <div class="player"><audio controls><source src="audio/47 Accelerate 7 Meaning.m4a?v=3" type="audio/mp4" /></audio></div></li>
+    </ul>
+
+    <div class="divider"></div>
+
+    <!-- ARC 7 -->
+    <h2>Arc of Actualise</h2>
+    <h3>Threshold VIII — The Gate of Actualisation</h3>
+    <p><em>Bring the song out of the head and into the bone.</em></p>
+    <div class="player"><audio controls><source src="audio/67 Introduction to Actualise.m4a?v=3" type="audio/mp4" /></audio></div>
+    <ul>
+      <li><strong>Plate XLVIII – Theoretical as Seed</strong><br/><em>Ideas are scaffolds; they vanish once the structure stands.</em>
+        <div class="player"><audio controls><source src="audio/48 Actualise 1 Theoretical.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Scroll XLIX – Halo of the Work</strong><br/><em>What shines around it is proof of what burns within it.</em>
+        <div class="player"><audio controls><source src="audio/49 Actualise 2 Halo.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Fragment L – Experiential as Teacher</strong><br/><em>Touch is a scripture the mind can’t erase.</em>
+        <div class="player"><audio controls><source src="audio/50 Actualise 3 Experiential.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Gate LI – Orientation as Compass</strong><br/><em>Even a stumble has direction when the axis is true.</em>
+        <div class="player"><audio controls><source src="audio/51 Actualise 4 Orientation.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Scroll LII – Revolving as Renewal</strong><br/><em>The circle isn’t repetition; it’s ascent disguised as return.</em>
+        <div class="player"><audio controls><source src="audio/52 Actualise 5 Revolving.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Plate LIII – The Yes That Opens Worlds</strong><br/><em>A single wholehearted yes outweighs a thousand half-no’s.</em>
+        <div class="player"><audio controls><source src="audio/53 Actualise 6 Yes.m4a?v=3" type="audio/mp4" /></audio></div></li>
+    </ul>
+
+    <div class="divider"></div>
+
+    <!-- ARC 8 -->
+    <h2>Arc of Ascend</h2>
+    <h3>Threshold IX — The Gate of Ascension</h3>
+    <p><em>Step through not upward, but inward; the peak is folded inside the root.</em></p>
+    <div class="player"><audio controls><source src="audio/68 Introduction to Ascend.m4a?v=3" type="audio/mp4" /></audio></div>
+    <ul>
+      <li><strong>Plate LIV – Becoming as Flame</strong><br/><em>You are not found, you are forged.</em>
+        <div class="player"><audio controls><source src="audio/54 Ascend 1 Becoming.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Scroll LV – Environment as Mirror</strong><br/><em>The room you keep is the echo you become.</em>
+        <div class="player"><audio controls><source src="audio/55 Ascend 2 Environment.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Fragment LVI – Limitless as Law</strong><br/><em>The only ceiling is belief in ceilings.</em>
+        <div class="player"><audio controls><source src="audio/56 Ascend 3 Limitless.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Gate LVII – Ideology as Chain and Key</strong><br/><em>A thought repeated too long becomes a prison — or a ladder.</em>
+        <div class="player"><audio controls><source src="audio/57 Ascend 4 Ideology.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Scroll LVIII – Eternity as Companion</strong><br/><em>Time sits beside you quietly, waiting to be noticed.</em>
+        <div class="player"><audio controls><source src="audio/58 Ascend 5 Eternity.m4a?v=3" type="audio/mp4" /></audio></div></li>
+      <li><strong>Plate LIX – Future in the Present Tense</strong><br/><em>What you rehearse today arrives dressed as tomorrow.</em>
+        <div class="player"><audio controls><source src="audio/59 Ascend 6 Future.m4a?v=3" type="audio/mp4" /></audio></div></li>
+    </ul>
+
+  </div><!-- /scroll -->
+</div><!-- /wrap -->
+
 <script>
+  function enterPortal(){
+    document.getElementById('portal').style.display='none';
+    document.getElementById('gate').classList.remove('hidden');
+  }
   function unlock(){
     const phrase = document.getElementById('pass').value.trim().toLowerCase();
     const correct = "flame"; // <-- change to your secret passphrase
     if(phrase === correct){
-      document.getElementById('gate').style.display='none';
-      document.getElementById('scroll').style.display='block';
+      document.getElementById('gate').classList.add('hidden');
+      document.getElementById('scroll').classList.remove('hidden');
       const firstAudio = document.querySelector('#scroll audio');
       if(firstAudio) firstAudio.focus();
     } else {
@@ -471,5 +321,6 @@
     }
   }
 </script>
+
 </body>
 </html>
