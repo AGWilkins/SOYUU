@@ -9,11 +9,12 @@
     --ember:#ffdf99; --text:#f5f5f5; --glow:rgba(255,190,80,.55);
   }
   html,body{height:100%}
-  /* Portal sigil pulse on page load */
-@keyframes prismFade {
-  0%   { opacity:0; filter:drop-shadow(0 0 0 rgba(255,210,120,0)); }
-  60%  { opacity:1; filter:drop-shadow(0 0 24px rgba(255,210,120,0.35)); }
-  100% { opacity:0.92; filter:drop-shadow(0 0 16px rgba(255,210,120,0.25)); }
+  
+/* Portal sigil: continuous gentle breath, never fully gone */
+@keyframes prismBreathe {
+  0%   { opacity:0.60; filter:drop-shadow(0 0 12px rgba(255,210,120,0.20)); }
+  50%  { opacity:0.92; filter:drop-shadow(0 0 24px rgba(255,210,120,0.35)); }
+  100% { opacity:0.70; filter:drop-shadow(0 0 16px rgba(255,210,120,0.25)); }
 }
 
 #portal{
@@ -21,10 +22,12 @@
   height:100vh; text-align:center;
   background:
     radial-gradient(closest-side at 50% 35%, rgba(255,210,120,.12), transparent 70%),
-    url('prism.png?v=8') no-repeat center 42%,
+    url('prism.png?v=9') no-repeat center 42%,
     #000;
   background-size: auto, 340px auto, auto;
-  animation: prismFade 2.4s ease-out forwards, prismFade 8s ease-in-out infinite alternate 3s;
+
+  /* 👇 keeps the prism always visible, softly pulsing */
+  animation: prismBreathe 7s ease-in-out infinite;
 }
 
 /* base: no watermark on the portal */
