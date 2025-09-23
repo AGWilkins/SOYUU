@@ -23,6 +23,47 @@
   body{ font-size: 15px; }
   #portal h1{ font-size:1.1rem; }
 }
+.btn{
+  display:inline-block;
+  padding: 1rem 1.35rem;
+  min-height: 46px;                /* thumb-friendly on mobile */
+  border:1px solid var(--ember);
+  border-radius:999px;             /* perfect circle pill */
+  background:
+    radial-gradient(120px 40px at 50% 0%, rgba(255,223,153,.16), transparent),
+    linear-gradient(180deg, rgba(255,223,153,.12), rgba(255,223,153,.05));
+  color: var(--text);
+  text-decoration:none;
+  font-weight:700;
+  letter-spacing:.07em;
+  font-size: clamp(14px, 4vw, 18px);  /* scales with screen */
+  text-transform: uppercase;
+  line-height:1;
+  cursor:pointer;
+
+  /* subtle jewel-glow */
+  box-shadow:
+    0 0 0 2px rgba(255,223,153,.10) inset,
+    0 10px 22px rgba(255,223,153,.08),
+    0 5px 14px rgba(0,0,0,.55);
+  transition: transform .08s ease, box-shadow .25s ease, background .25s ease;
+}
+
+.btn:hover{
+  box-shadow:
+    0 0 0 2px rgba(255,223,153,.14) inset,
+    0 14px 28px rgba(255,223,153,.12),
+    0 6px 16px rgba(0,0,0,.6);
+}
+
+.btn:active{ transform: translateY(1px); }
+
+.btn:focus{
+  outline:none;
+  box-shadow:
+    0 0 0 3px rgba(255,223,153,.35),
+    0 0 0 6px rgba(255,223,153,.15);
+}
 
 /* Portal sigil: continuous gentle breath, never fully gone */
 @keyframes prismBreathe {
@@ -137,6 +178,16 @@ body.sigil::before{
   letter-spacing:1.5px;
   color:var(--ember);
   text-shadow: 0 0 14px rgba(255,210,120,.4);
+}
+#portal .btn{
+  margin-top: 1.75rem;   /* space below the title */
+}
+
+/* On smaller screens, give it a touch more */
+@media (max-width:640px){
+  #portal .btn{
+    margin-top: 2.5rem;
+  }
 }
 
 
