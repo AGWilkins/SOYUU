@@ -179,6 +179,19 @@ body.sigil::before{
   color:var(--ember);
   text-shadow: 0 0 14px rgba(255,210,120,.4);
 }
+  #portal h1{
+  margin: 0 0 1.75rem 0;   /* remove big top margin, add bottom gap */
+}
+
+#portal .btn{
+  margin-top: 0;           /* handled by h1 margin */
+}
+
+/* On mobile, add more breathing room */
+@media (max-width:640px){
+  #portal h1{ margin-bottom: 2.5rem; }
+}
+
 #portal .btn{
   margin-top: 1.75rem;   /* space below the title */
 }
