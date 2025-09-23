@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+<!-- Black background -->
+<rect width="100" height="100" fill="#000"/>
+
+<!-- Prism (diamond) outline -->
+<path d="M50 12 L82 44 L50 88 L18 44 Z"
+fill="none" stroke="#d7b56d" stroke-width="3"/>
+
+<!-- Facet lines -->
+<path d="M50 12 L50 88" stroke="#d7b56d" stroke-width="2" opacity=".9"/>
+<path d="M18 44 L82 44" stroke="#d7b56d" stroke-width="2" opacity=".8"/>
+<path d="M34 28 L50 44 L66 28" stroke="#d7b56d" stroke-width="2" opacity=".7"/>
+
+<!-- Fracture / light leak -->
+<path d="M40 52 Q50 46 60 38" stroke="#fff8d6" stroke-width="1.8" fill="none"/>
+
+<!-- Subtle glow dot -->
+<circle cx="60" cy="38" r="2.2" fill="#d7b56d" opacity=".9"/>
+</svg>
